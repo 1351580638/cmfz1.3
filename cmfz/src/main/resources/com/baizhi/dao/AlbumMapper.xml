@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- namespace等于全限定名 -->
+<mapper namespace="com.baizhi.dao.AlbumDao">
+    <resultMap id="listAlbum" type="Album">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="coveImg" property="coveImg"/>
+        <result column="count" property="count"/>
+        <result column="score" property="score"/>
+        <result column="author" property="author"/>
+        <result column="broadCast" property="broadCast"/>
+        <result column="brief" property="brief"/>
+        <result column="publishDate" property="publishDate"/>
+        <result column="chapterList" property="chapterList"/>
+
+            <collection property="children" ofType="Chapter">
+                <id column="cid" property="id"/>
+                <result column="ctitle" property="title"/>
+                <result column="csize" property="size"/>
+                <result column="cduration" property="duration"/>
+                <result column="cdownPath" property="downPath"/>
+                <result column="cuploadDate" property="uploadDate"/>
+                <result column="calbumId" property="albumId"/>
+            </collection>
+    </resultMap>
+
+<!-- 查询一个 -->
+  <select id="selectAll" resultMap="listAlbum">
+       select a.*,c.id cid,c.title ctitle,c.size csize,c.duration cduration,c.downPath cdownPath,c.uploadDate cuploadDate,c.albumId calbumId
+       FROM album a left JOIN chapter c
+       on a.id=c.albumId
+  </select>
+
+    <select id="getCount" resultType="int">
+        select count(*) fralbum
+    </select>
+
+</mapper>

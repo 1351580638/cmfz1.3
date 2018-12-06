@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- namespace等于全限定名 -->
+<mapper namespace="com.baizhi.dao.ShowwDao">
+
+<!-- 查询一个 -->
+  <select id="getAll" resultType="Showw">
+    select * from showw limit #{start},#{end}
+  </select>
+
+  <select id="getCount" resultType="int">
+     select count(*) from showw
+  </select>
+
+ <!-- 添加-->
+  <insert id="insert">
+        insert into showw VALUES(0,#{title},#{imgPath},#{desc},#{status},date)
+  </insert>
+
+  <!--删除-->
+  <delete id="delete">
+    DELETE FROM showw where id=#{id}
+  </delete>
+
+  <!--修改-->
+  <update id="update">
+    UPDATE showw SET status=#{status} WHERE id = #{id}
+  </update>
+
+</mapper>

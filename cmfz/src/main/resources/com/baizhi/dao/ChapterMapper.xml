@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace等于全限定名 -->
+<mapper namespace="com.baizhi.dao.ChapterDao">
+
+    <!-- 查询一个 -->
+    <select id="selectAll" resultType="Chapter">
+     select * from chapter
+  </select>
+    <select id="getCount" resultType="int">
+        select count(*) from chapter
+    </select>
+
+    <insert id="insert">
+          insert into chapter VALUES(0,#{title},#{size},#{duration},#{downPath},#{uploadDate},#{albumid})
+    </insert>
+
+
+
+</mapper>
